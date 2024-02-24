@@ -3,8 +3,8 @@
 
 ### Как потрогать:
 
-1. Устанавливаем docker desktop. Запускаем
-2. извлекаем архив в корень
+### 1. Устанавливаем docker desktop. Запускаем
+### 2. Извлекаем архив в корень
 
 ```
 ├── readme.md             
@@ -12,14 +12,31 @@
 ├── data-gitlab
     ├── ...      
 ```
-3. в корне запускаем команду `docker-compose up -d --force-recreate && docker-compose ps  `
+### 3. Чуток печатаем
+- изменяем в файле `.\docker-compose.yml` `hostname: __LOCAL IP__`
+- изменяем в файле `.\data-gitlab\etc\gitlab-runner\config.toml` 
+```
+url = "http://__LOCAL_IP__:8000/"
+clone_url = "http://__LOCAL_IP__:8000/"
+```  
+ 
+### 4. В корне запускаем команду `docker-compose up -d --force-recreate && docker-compose ps  `
 
-web: http://192.168.1.38:8000/  
+web: http://LOCAL_IP:8000/  
 login: root  
 pw: mGDjtXZF
 
 
+#### PS.
+<details>
+  <summary>Как узнать свой ip (Windows)  </summary>   
+  
+в cmd\powershell пишем `ipconfig`  
+  ищем такое примерно такое:  
+`IPv4-адрес. . . . . . . . . . . . : 192.168.1.38`
+</details>   
 
+#### PS #2.
 <details>
   <summary>Источники которые использовал для настройки</summary>
   
