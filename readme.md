@@ -29,10 +29,11 @@ pw: mGDjtXZF
 
 #### PS.
 <details>
-  <summary>Как узнать свой ip (Windows)  </summary>   
+  <summary>Как узнать свой ip (Windows)  </summary>     
+
   
-в cmd\powershell пишем `ipconfig`  
-  ищем такое примерно такое:  
+#### в cmd\powershell пишем `ipconfig`  
+  ищем примерно такое:  
 `IPv4-адрес. . . . . . . . . . . . : 192.168.1.38`
 </details>   
 
