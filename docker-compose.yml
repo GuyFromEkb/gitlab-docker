@@ -1,19 +1,19 @@
-version: '3.5'
+version: "3.5"
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
-    hostname: 192.168.1.38
-    restart: unless-stopped
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['gitlab_shell_ssh_port'] = 8822
+    hostname: 192.168.1.38
+    restart: unless-stopped
     ports:
-      - "8000:80"
+      - "80:80"
       - "8822:22"
     volumes:
-      - ./data-gitlab/etc/gitlab:/etc/gitlab
-      - ./data-gitlab/var/opt/gitlab:/var/opt/gitlab
-      - ./data-gitlab/var/log/gitlab:/var/log/gitlab
+      - gitlab_etc:/etc/gitlab
+      - gitlab_opt:/var/opt/gitlab
+      - gitlab_log:/var/log/gitlab
     networks:
       - gitlab_net
 
@@ -23,11 +23,17 @@ services:
     depends_on:
       - gitlab
     volumes:
-      - ./data-gitlab/etc/gitlab-runner:/etc/gitlab-runner
-      - //var/run/docker.sock:/var/run/docker.sock ## for Windows
-    # - /data/docker/gitlab/var/run/docker.sock:/var/run/docker.sock ## for Linux
+      - gitlab_runner_etc:/etc/gitlab-runner
+      - //var/run/docker.sock:/var/run/docker.sock ## Only for Windows-docker client!
     networks:
       - gitlab_net
+
+## Only for Windows-docker client! https://forum.gitlab.com/t/500-internal-error-when-trying-to-upload-artifacts/43709/6
+volumes:
+  gitlab_etc:
+  gitlab_opt:
+  gitlab_log:
+  gitlab_runner_etc:
 
 networks:
   gitlab_net:
