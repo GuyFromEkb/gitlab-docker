@@ -38,16 +38,56 @@
 #### PS #1.
 
 Что бы работал кэш среди локальных ранеров, нужно в настройках ранера (`config.toml`) [явно указать мапинг для volume](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/36877#note_1572421182)  
+пример файла:
 ```yml
+concurrent = 5
+check_interval = 0
+connection_max_age = "15m0s"
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
 [[runners]]
-  ...
+  name = "docker-runner"
+  url = "http://192.168.1.38/"
+  id = 1
+  token = "zKHfrn8UPiT1yM_5VgXV"
+  token_obtained_at = 2024-02-25T15:35:13Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
   [runners.docker]
+    tls_verify = false
+    image = "docker:stable"
+    privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
     volumes = ["/mnt/gitlab-runner/cache:/cache"]
-....
+    shm_size = 0
+    network_mtu = 0
+
 [[runners]]
-  ...
+  name = "docker-runner2"
+  url = "http://192.168.1.38/"
+  id = 2
+  token = "uoBV8rNjLx_N-2wVJ7hT"
+  token_obtained_at = 2024-02-26T15:31:15Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
   [runners.docker]
+    tls_verify = false
+    image = "docker:stable"
+    privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
     volumes = ["/mnt/gitlab-runner/cache:/cache"]
+    shm_size = 0
+    network_mtu = 0
+
 ```
 
   
