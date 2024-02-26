@@ -41,7 +41,7 @@
   <summary>локальный кэш среди локальных ранеров</summary>
 
 
-- Что бы работал кэш среди локальных ранеров, нужно в настройках ранера (`config.toml`) [явно указать мапинг для volume](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/36877#note_1572421182)  
+- Например в контейнере gitlab-runner, создали пару ранеров. и нужно шобы у них был один кэш.Для этого в файлах контейнера gitlab-runner (`config.toml`) [явно указать мапинг для volume](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/36877#note_1572421182)  
 пример файла:
 ```yml
 concurrent = 5
