@@ -34,6 +34,23 @@
 
 </details>
 
+
+#### PS #1.
+
+Что бы работал кэш среди локальных ранеров, нужно в настройках ранера (`config.toml`) [явно указать мапинг для volume](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/36877#note_1572421182)  
+```yml
+[[runners]]
+  ...
+  [runners.docker]
+    volumes = ["/mnt/gitlab-runner/cache:/cache"]
+....
+[[runners]]
+  ...
+  [runners.docker]
+    volumes = ["/mnt/gitlab-runner/cache:/cache"]
+```
+
+  
 #### PS #2.
 
 <details>
