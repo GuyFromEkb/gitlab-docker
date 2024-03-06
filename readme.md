@@ -104,6 +104,7 @@ shutdown_timeout = 0
   <summary>Источники которые использовал для настройки</summary>
   
 #### [doc](http://snakeproject.ru/rubric/article.php?art=gitlab_docker_03_02_2022)
+#### [doc2](https://sysadmintalks.ru/install-gitlab-runner/)
 
 </details>
 
